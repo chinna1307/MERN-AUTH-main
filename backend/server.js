@@ -11,18 +11,18 @@ const app = express()
 const PORT = process.env.PORT || 3000
 
 app.use(express.json())
+
+// <<< THIS IS THE UPDATED SECTION
+// It now trusts both your local server and your live deployed frontend
 app.use(cors({
-    origin:'http://localhost:5173',
+    origin:['http://localhost:5173', 'https://notes-app-frontend-chinna.onrender.com'],
     credentials:true
 }))
 
 app.use('/auth', authRoute)
 app.use('/user', userRoute)
 
-// http://localhost:8000/user/register
-
-
 app.listen(PORT,()=>{
     connectDB()
-    console.log(`Server is listening at port ${PORT}`);  
+    console.log(`Server is listening at port ${PORT}`);
 })
