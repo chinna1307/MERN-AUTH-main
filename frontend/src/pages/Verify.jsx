@@ -21,8 +21,8 @@ const Verify = () => {
             }
 
             try {
-                // <<< CHANGED from .post to .get
-                const res = await axios.get(`http://localhost:5000/user/verify/${token}`);
+                // <<< UPDATED THIS LINE
+                const res = await axios.get(`${import.meta.env.VITE_API_URL}/user/verify/${token}`);
 
                 if (res.data.success) {
                     setStatus('success');

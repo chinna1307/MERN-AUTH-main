@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Eye, EyeOff, Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
-import { Link, useNavigate } from 'react-router-dom' // Link is imported
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 const Signup = () => {
@@ -35,11 +35,10 @@ const Signup = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(formData);
         try {
             setIsLoading(true)
-            // <<< THIS IS THE CORRECTED LINE WITH PORT 5000
-            const res = await axios.post(`http://localhost:5000/user/register`, formData, {
+            // <<< UPDATED THIS LINE
+            const res = await axios.post(`${import.meta.env.VITE_API_URL}/user/register`, formData, {
                 headers: {
                     "Content-Type": "application/json"
                 }
